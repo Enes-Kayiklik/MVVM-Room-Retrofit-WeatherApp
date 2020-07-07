@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/displayFragment">
+
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.enes.weather.ui.home.fragments.AddFragment"
+        android:label="AddFragment">
+        <action
+            android:id="@+id/action_addFragment_to_displayFragment"
+            app:destination="@id/displayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayFragment"
+        android:name="com.enes.weather.ui.home.fragments.DisplayFragment"
+        android:label="DisplayFragment">
+        <action
+            android:id="@+id/action_displayFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_displayFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.enes.weather.ui.home.fragments.DetailFragment"
+        android:label="DetailFragment">
+        <action
+            android:id="@+id/action_detailFragment_to_graphFragment"
+            app:destination="@id/graphFragment" />
+        <argument
+            android:name="cityName"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.enes.weather.ui.home.fragments.GraphFragment"
+        android:label="GraphFragment" />
+</navigation>
