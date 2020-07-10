@@ -16,7 +16,7 @@
         android:hint="Şehir ismi giriniz"
         android:inputType="textPersonName"
         android:padding="14dp"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/wallet_holo_blue_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="ed"
         android:text="Use my current location"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"

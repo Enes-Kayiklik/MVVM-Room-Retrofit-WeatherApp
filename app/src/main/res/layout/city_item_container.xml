@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,133 +11,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/progressDate"
-        app:layout_constraintEnd_toEndOf="@+id/progressDate"
-        app:layout_constraintStart_toStartOf="@+id/progressDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvClock" />
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
 
     <TextView
         android:id="@+id/tvCityName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text=""
+        android:text="Osmaniye"
         android:textColor="@color/colorWhite"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnAdd"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvDateSunset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="19:38"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="@+id/imgSunset"
-        app:layout_constraintStart_toStartOf="@+id/imgSunset"
-        app:layout_constraintTop_toBottomOf="@+id/imgSunset" />
-
-    <TextView
-        android:id="@+id/tvDateSunrise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="05:59"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="@+id/imgSunrise"
-        app:layout_constraintStart_toStartOf="@+id/imgSunrise"
-        app:layout_constraintTop_toBottomOf="@+id/imgSunrise" />
-
-    <TextView
-        android:id="@+id/tvClock"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="18:30"
-        android:textColor="@color/colorWhite"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCityName" />
-
-    <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Güneşli"
         android:textColor="@color/colorWhite"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvDate"
-        app:layout_constraintStart_toStartOf="@+id/tvDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="30 May 1987"
-        android:textColor="@color/colorWhite"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/progressDate"
-        app:layout_constraintStart_toStartOf="@+id/progressDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvWeather" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvMinMaxDegree"
+        app:layout_constraintStart_toStartOf="@+id/tvMinMaxDegree"
+        app:layout_constraintTop_toBottomOf="@+id/tvMinMaxDegree" />
 
     <TextView
         android:id="@+id/tvWeather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="36°"
+        android:layout_marginTop="200dp"
+        android:text="36"
         android:textColor="@color/colorWhite"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="@+id/progressDate"
-        app:layout_constraintStart_toStartOf="@+id/progressDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvClock" />
-
-    <ImageView
-        android:id="@+id/imgSunrise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/progressDate"
-        app:layout_constraintStart_toStartOf="@+id/progressDate"
-        app:srcCompat="@drawable/ic_sunrise" />
-
-    <ImageView
-        android:id="@+id/imgSunset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/progressDate"
-        app:layout_constraintTop_toTopOf="@+id/imgSunrise"
-        app:srcCompat="@drawable/ic_sunset" />
+        android:textSize="125sp"
+        app:layout_constraintEnd_toEndOf="@+id/imgWeatherIcon"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/imgWeatherIcon"
+        app:layout_constraintTop_toBottomOf="@+id/tvCityName" />
 
     <TextView
         android:id="@+id/btnMoreInformation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Daha fazla bilgi >"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Sonraki 5 gün >"
         android:textColor="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.github.lzyzsd.circleprogress.ArcProgress
-        android:id="@+id/progressDate"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:arc_suffix_text=" "
-        app:arc_text_size="0sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvClock" />
 
     <ImageView
         android:id="@+id/btnDelete"
@@ -144,7 +68,152 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/tvCityName"
         app:layout_constraintStart_toEndOf="@+id/tvCityName"
-        app:layout_constraintTop_toTopOf="@+id/tvCityName"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_delete" />
+
+    <ImageView
+        android:id="@+id/imgWeatherIcon"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCityName"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvMinMaxDegree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="26° / 24°"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvWeather"
+        app:layout_constraintEnd_toEndOf="@+id/tvWeather"
+        app:layout_constraintStart_toStartOf="@+id/tvWeather"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeather" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="1dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:srcCompat="@drawable/ic_barometer" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/view3"
+        app:srcCompat="@drawable/ic_humidity" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:srcCompat="@drawable/ic_real_feel" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/view3"
+        app:layout_constraintEnd_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:srcCompat="@drawable/ic_wind" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="°"
+        android:textColor="@color/colorWhite"
+        android:textSize="125sp"
+        app:layout_constraintStart_toEndOf="@+id/tvWeather"
+        app:layout_constraintTop_toTopOf="@+id/tvWeather" />
+
+    <TextView
+        android:id="@+id/tvWind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <TextView
+        android:id="@+id/tvHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/tvWind"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/tvRealFeel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tvPressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/tvRealFeel"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

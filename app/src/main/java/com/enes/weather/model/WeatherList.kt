@@ -1,6 +1,6 @@
 package com.enes.weather.model
 
-data class List(
+data class WeatherList(
     val clouds: Clouds,
     val dt: Int,
     val dt_txt: String,

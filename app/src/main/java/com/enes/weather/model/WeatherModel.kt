@@ -4,6 +4,6 @@ data class WeatherModel(
     val city: City,
     val cnt: Int,
     val cod: String,
-    val list: List<com.enes.weather.model.List>,
+    val list: List<WeatherList>,
     val message: Int
 )

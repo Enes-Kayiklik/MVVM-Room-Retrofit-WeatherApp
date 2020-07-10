@@ -11,13 +11,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.enes.weather.R
 import com.enes.weather.db.City
+import com.enes.weather.model.WeatherModel
 import com.enes.weather.ui.home.fragments.DisplayFragmentDirections
 import com.enes.weather.viewmodel.city.CityViewModel
 import com.enes.weather.viewmodel.weather.WeatherViewModel
 import kotlinx.android.synthetic.main.city_item_container.view.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.math.round
 
 class MainPagerAdapter(
@@ -26,21 +24,6 @@ class MainPagerAdapter(
     private var weatherModel: WeatherViewModel,
     private val owner: LifecycleOwner
 ) : RecyclerView.Adapter<MainPagerAdapter.CustomViewHolder>() {
-    private val calendar = Calendar.getInstance()
-    private val months = listOf(
-        "Ocak",
-        "Şubat",
-        "Mart",
-        "Nisan",
-        "Mayıs",
-        "Haziran",
-        "Temmuz",
-        "Ağustos",
-        "Eylül",
-        "Ekim",
-        "Kasım",
-        "Aralık"
-    )
 
     override fun getItemCount(): Int {
         return cityList.size
@@ -69,17 +52,44 @@ class MainPagerAdapter(
                 findNavController().navigate(action)
             }
 
-            weatherModel.weather.observe(owner, Observer {
-                it?.let {
-                    it.list.first().main.temp.apply {
-                        tvWeather.text = round(this).toInt().toString().plus("°")
+            weatherModel.weather.observe(owner, Observer { observe ->
+                observe?.let { weatherModel ->
+                    weatherModel.list.first().main.temp.apply {
+                        tvWeather.text = round(this).toInt().toString()
                     }
 
-                    it.list.first().weather.first().description.apply {
+                    imgWeatherIcon.setImageDrawable(
+                        when (weatherModel.list[0].weather[0].icon) {
+                            "01d", "01n" -> resources.getDrawable(R.drawable.ic_clear_sky, null)
+                            "02d", "02n" -> resources.getDrawable(R.drawable.ic_few_clouds, null)
+                            "03d", "03n" -> resources.getDrawable(
+                                R.drawable.ic_scatterd_clouds,
+                                null
+                            )
+                            "04d", "04n" -> resources.getDrawable(R.drawable.ic_broken_clouds, null)
+                            "09d", "09n" -> resources.getDrawable(R.drawable.ic_rain, null)
+                            "10d", "10n" -> resources.getDrawable(R.drawable.ic_rain, null)
+                            "11d", "11n" -> resources.getDrawable(R.drawable.ic_thunderstorm, null)
+                            "13d", "13n" -> resources.getDrawable(R.drawable.ic_snow, null)
+                            "50d", "50n" -> resources.getDrawable(R.drawable.ic_mist, null)
+                            else -> resources.getDrawable(R.drawable.ic_humidity, null)
+                        }
+                    )
+                    val tempMin = round(weatherModel.findMin()!!).toInt().toString().plus("° / ")
+                    val tempMax = round(weatherModel.findMax()!!).toInt().toString().plus("°")
+                    tvMinMaxDegree.text = tempMin.plus(tempMax)
+
+                    val currentDec = weatherModel.list[0].main
+                    tvWind.text = weatherModel.list[0].wind.speed.toString().plus(" km/h")
+                    tvHumidity.text = currentDec.humidity.toString()
+                    tvPressure.text = currentDec.pressure.toString().plus(" hPa")
+                    tvRealFeel.text = currentDec.feels_like.toString().plus(" °")
+
+                    weatherModel.list.first().weather.first().description.apply {
                         tvDescription.text = replace(first(), first().toUpperCase())
                     }
 
-                    val sunrise = Date(it.city.sunrise.toLong() * 1000)
+                    /*val sunrise = Date(it.city.sunrise.toLong() * 1000)
                     val sunset = Date(it.city.sunset.toLong() * 1000)
                     calendar.time = sunrise
                     val sunriseTime =
@@ -89,19 +99,8 @@ class MainPagerAdapter(
                         "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
 
                     tvDateSunrise.text = sunriseTime
-                    tvDateSunset.text = sunsetTime
+                    tvDateSunset.text = sunsetTime*/
 
-                    tvDate.text =
-                        "${calendar.get(Calendar.DAY_OF_MONTH)} ${months[calendar.get(Calendar.MONTH)]} ${calendar.get(
-                            Calendar.YEAR
-                        )}"
-
-                    //TODO("GET SELECTED CİTY TİME")
-                    val formatter = DateTimeFormatter.ofPattern("HH:mm")
-                    val now = LocalDateTime.now()
-                    tvClock.text = formatter.format(now)
-
-                    progressDate.progress = LocalDateTime.now().hour * 100 / 24
                     progressBarDisplayFragment.visibility = View.INVISIBLE
                 }
             })
@@ -109,4 +108,10 @@ class MainPagerAdapter(
     }
 
     inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    private fun WeatherModel.findMin() =
+        this.list.subList(0, 8).minBy { it.main.temp_min }?.main?.temp_min
+
+    private fun WeatherModel.findMax() =
+        this.list.subList(0, 8).maxBy { it.main.temp_min }?.main?.temp_max
 }

@@ -8,11 +8,5 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        /*val viewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
-
-        viewModel.weather.observe(this, Observer {
-            Log.e("Deneme", "$it")
-        })*/
-
     }
 }

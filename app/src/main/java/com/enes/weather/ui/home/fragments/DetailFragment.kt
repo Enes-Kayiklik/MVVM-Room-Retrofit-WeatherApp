@@ -23,21 +23,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
 
         weatherViewModel.weather.observe(this.viewLifecycleOwner, Observer { weatherInfo ->
-            val informationList = listOf(
-                weatherInfo.list[0],
-                weatherInfo.list[8],
-                weatherInfo.list[16],
-                weatherInfo.list[24],
-                weatherInfo.list[32]
-            )
-
-            detailAdapter.weatherList = informationList
+            detailAdapter.weatherModel = weatherInfo
             detailAdapter.notifyDataSetChanged()
 
-            val weatherMain = weatherInfo.list[0].main
-            tvDetailHumidity.text = "${weatherMain.humidity}"
-            tvDetailPressure.text = "${weatherMain.pressure} hPa"
-            tvDetailWind.text = "${weatherInfo.list[0].wind.speed} km/h"
             progressBarDetailFragment.visibility = View.INVISIBLE
         })
     }
@@ -57,7 +45,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun setupRecyclerView() {
-        detailAdapter = DetailFragmentRecyclerViewAdapter(listOf())
+        detailAdapter = DetailFragmentRecyclerViewAdapter(null)
         recyclerViewDetailContainer.adapter = detailAdapter
         recyclerViewDetailContainer.layoutManager =
             LinearLayoutManager(this.requireContext(), LinearLayoutManager.VERTICAL, false)
